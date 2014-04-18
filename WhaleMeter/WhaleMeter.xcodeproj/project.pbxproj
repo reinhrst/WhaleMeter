@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F43F62D190194F000D39D5D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F62C190194F000D39D5D /* Foundation.framework */; };
+		3F43F62F190194F000D39D5D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F62E190194F000D39D5D /* CoreGraphics.framework */; };
+		3F43F631190194F000D39D5D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F630190194F000D39D5D /* UIKit.framework */; };
+		3F43F637190194F000D39D5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F635190194F000D39D5D /* InfoPlist.strings */; };
+		3F43F639190194F000D39D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F638190194F000D39D5D /* main.m */; };
+		3F43F63D190194F000D39D5D /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F63C190194F000D39D5D /* WMAppDelegate.m */; };
+		3F43F640190194F000D39D5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F63E190194F000D39D5D /* Main.storyboard */; };
+		3F43F643190194F000D39D5D /* WMFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F642190194F000D39D5D /* WMFirstViewController.m */; };
+		3F43F646190194F000D39D5D /* WMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F645190194F000D39D5D /* WMSecondViewController.m */; };
+		3F43F648190194F000D39D5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F647190194F000D39D5D /* Images.xcassets */; };
+		3F43F64F190194F000D39D5D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F64E190194F000D39D5D /* XCTest.framework */; };
+		3F43F650190194F000D39D5D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F62C190194F000D39D5D /* Foundation.framework */; };
+		3F43F651190194F000D39D5D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F630190194F000D39D5D /* UIKit.framework */; };
+		3F43F659190194F000D39D5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F657190194F000D39D5D /* InfoPlist.strings */; };
+		3F43F65B190194F000D39D5D /* WhaleMeterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F65A190194F000D39D5D /* WhaleMeterTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F43F652190194F000D39D5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F43F621190194F000D39D5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F43F628190194F000D39D5D;
+			remoteInfo = WhaleMeter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3F43F629190194F000D39D5D /* WhaleMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhaleMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F43F62C190194F000D39D5D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3F43F62E190194F000D39D5D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3F43F630190194F000D39D5D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3F43F634190194F000D39D5D /* WhaleMeter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhaleMeter-Info.plist"; sourceTree = "<group>"; };
+		3F43F636190194F000D39D5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F43F638190194F000D39D5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3F43F63A190194F000D39D5D /* WhaleMeter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhaleMeter-Prefix.pch"; sourceTree = "<group>"; };
+		3F43F63B190194F000D39D5D /* WMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppDelegate.h; sourceTree = "<group>"; };
+		3F43F63C190194F000D39D5D /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
+		3F43F63F190194F000D39D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F43F641190194F000D39D5D /* WMFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMFirstViewController.h; sourceTree = "<group>"; };
+		3F43F642190194F000D39D5D /* WMFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMFirstViewController.m; sourceTree = "<group>"; };
+		3F43F644190194F000D39D5D /* WMSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMSecondViewController.h; sourceTree = "<group>"; };
+		3F43F645190194F000D39D5D /* WMSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMSecondViewController.m; sourceTree = "<group>"; };
+		3F43F647190194F000D39D5D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3F43F64D190194F000D39D5D /* WhaleMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhaleMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F43F64E190194F000D39D5D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3F43F656190194F000D39D5D /* WhaleMeterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhaleMeterTests-Info.plist"; sourceTree = "<group>"; };
+		3F43F658190194F000D39D5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F43F65A190194F000D39D5D /* WhaleMeterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhaleMeterTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F43F626190194F000D39D5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F62F190194F000D39D5D /* CoreGraphics.framework in Frameworks */,
+				3F43F631190194F000D39D5D /* UIKit.framework in Frameworks */,
+				3F43F62D190194F000D39D5D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F43F64A190194F000D39D5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F64F190194F000D39D5D /* XCTest.framework in Frameworks */,
+				3F43F651190194F000D39D5D /* UIKit.framework in Frameworks */,
+				3F43F650190194F000D39D5D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F43F620190194F000D39D5D = {
+			isa = PBXGroup;
+			children = (
+				3F43F632190194F000D39D5D /* WhaleMeter */,
+				3F43F654190194F000D39D5D /* WhaleMeterTests */,
+				3F43F62B190194F000D39D5D /* Frameworks */,
+				3F43F62A190194F000D39D5D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F43F62A190194F000D39D5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F629190194F000D39D5D /* WhaleMeter.app */,
+				3F43F64D190194F000D39D5D /* WhaleMeterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F43F62B190194F000D39D5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F62C190194F000D39D5D /* Foundation.framework */,
+				3F43F62E190194F000D39D5D /* CoreGraphics.framework */,
+				3F43F630190194F000D39D5D /* UIKit.framework */,
+				3F43F64E190194F000D39D5D /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F43F632190194F000D39D5D /* WhaleMeter */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F63B190194F000D39D5D /* WMAppDelegate.h */,
+				3F43F63C190194F000D39D5D /* WMAppDelegate.m */,
+				3F43F63E190194F000D39D5D /* Main.storyboard */,
+				3F43F641190194F000D39D5D /* WMFirstViewController.h */,
+				3F43F642190194F000D39D5D /* WMFirstViewController.m */,
+				3F43F644190194F000D39D5D /* WMSecondViewController.h */,
+				3F43F645190194F000D39D5D /* WMSecondViewController.m */,
+				3F43F647190194F000D39D5D /* Images.xcassets */,
+				3F43F633190194F000D39D5D /* Supporting Files */,
+			);
+			path = WhaleMeter;
+			sourceTree = "<group>";
+		};
+		3F43F633190194F000D39D5D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F634190194F000D39D5D /* WhaleMeter-Info.plist */,
+				3F43F635190194F000D39D5D /* InfoPlist.strings */,
+				3F43F638190194F000D39D5D /* main.m */,
+				3F43F63A190194F000D39D5D /* WhaleMeter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3F43F654190194F000D39D5D /* WhaleMeterTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F65A190194F000D39D5D /* WhaleMeterTests.m */,
+				3F43F655190194F000D39D5D /* Supporting Files */,
+			);
+			path = WhaleMeterTests;
+			sourceTree = "<group>";
+		};
+		3F43F655190194F000D39D5D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F43F656190194F000D39D5D /* WhaleMeterTests-Info.plist */,
+				3F43F657190194F000D39D5D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F43F628190194F000D39D5D /* WhaleMeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F43F65E190194F000D39D5D /* Build configuration list for PBXNativeTarget "WhaleMeter" */;
+			buildPhases = (
+				3F43F625190194F000D39D5D /* Sources */,
+				3F43F626190194F000D39D5D /* Frameworks */,
+				3F43F627190194F000D39D5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WhaleMeter;
+			productName = WhaleMeter;
+			productReference = 3F43F629190194F000D39D5D /* WhaleMeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F43F64C190194F000D39D5D /* WhaleMeterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F43F661190194F000D39D5D /* Build configuration list for PBXNativeTarget "WhaleMeterTests" */;
+			buildPhases = (
+				3F43F649190194F000D39D5D /* Sources */,
+				3F43F64A190194F000D39D5D /* Frameworks */,
+				3F43F64B190194F000D39D5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F43F653190194F000D39D5D /* PBXTargetDependency */,
+			);
+			name = WhaleMeterTests;
+			productName = WhaleMeterTests;
+			productReference = 3F43F64D190194F000D39D5D /* WhaleMeterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F43F621190194F000D39D5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Reinoud Elhorst";
+				TargetAttributes = {
+					3F43F64C190194F000D39D5D = {
+						TestTargetID = 3F43F628190194F000D39D5D;
+					};
+				};
+			};
+			buildConfigurationList = 3F43F624190194F000D39D5D /* Build configuration list for PBXProject "WhaleMeter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F43F620190194F000D39D5D;
+			productRefGroup = 3F43F62A190194F000D39D5D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F43F628190194F000D39D5D /* WhaleMeter */,
+				3F43F64C190194F000D39D5D /* WhaleMeterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F43F627190194F000D39D5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F648190194F000D39D5D /* Images.xcassets in Resources */,
+				3F43F637190194F000D39D5D /* InfoPlist.strings in Resources */,
+				3F43F640190194F000D39D5D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F43F64B190194F000D39D5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F659190194F000D39D5D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F43F625190194F000D39D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F643190194F000D39D5D /* WMFirstViewController.m in Sources */,
+				3F43F63D190194F000D39D5D /* WMAppDelegate.m in Sources */,
+				3F43F646190194F000D39D5D /* WMSecondViewController.m in Sources */,
+				3F43F639190194F000D39D5D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F43F649190194F000D39D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F43F65B190194F000D39D5D /* WhaleMeterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F43F653190194F000D39D5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F43F628190194F000D39D5D /* WhaleMeter */;
+			targetProxy = 3F43F652190194F000D39D5D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3F43F635190194F000D39D5D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F43F636190194F000D39D5D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3F43F63E190194F000D39D5D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F43F63F190194F000D39D5D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3F43F657190194F000D39D5D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F43F658190194F000D39D5D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F43F65C190194F000D39D5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3F43F65D190194F000D39D5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F43F65F190194F000D39D5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
+				INFOPLIST_FILE = "WhaleMeter/WhaleMeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3F43F660190194F000D39D5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
+				INFOPLIST_FILE = "WhaleMeter/WhaleMeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3F43F662190194F000D39D5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WhaleMeter.app/WhaleMeter";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WhaleMeterTests/WhaleMeterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3F43F663190194F000D39D5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WhaleMeter.app/WhaleMeter";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
+				INFOPLIST_FILE = "WhaleMeterTests/WhaleMeterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F43F624190194F000D39D5D /* Build configuration list for PBXProject "WhaleMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F43F65C190194F000D39D5D /* Debug */,
+				3F43F65D190194F000D39D5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F43F65E190194F000D39D5D /* Build configuration list for PBXNativeTarget "WhaleMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F43F65F190194F000D39D5D /* Debug */,
+				3F43F660190194F000D39D5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3F43F661190194F000D39D5D /* Build configuration list for PBXNativeTarget "WhaleMeterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F43F662190194F000D39D5D /* Debug */,
+				3F43F663190194F000D39D5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F43F621190194F000D39D5D /* Project object */;
+}
