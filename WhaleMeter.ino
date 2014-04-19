@@ -26,7 +26,7 @@ int TSL_REG_DATA = 0xC;
 
 
 byte _error;
-char advertisementData[9];
+char advertisementData[10];
 word batt;
 
 // the setup routine runs once when you press reset:
@@ -37,7 +37,7 @@ void setup() {
   writeBatt(100);
   writeIr(0);
   writeVis(0);
-  advertisementData[8] = 0;
+  advertisementData[9] = 0;
 
   pinMode(UV_EN, OUTPUT);
   digitalWrite(UV_EN, HIGH); // enable the UV meter
@@ -46,8 +46,6 @@ void setup() {
   Serial.println("setup done");
   
   RFduinoBLE.deviceName="Whale";
-  RFduinoBLE.advertisementData = advertisementData;
-  RFduinoBLE.begin();
 }
 
 
@@ -65,17 +63,25 @@ void setup_TSL2561(){
 
 // the loop routine runs over and over again forever:
 void loop() {
-  writeUv(analogRead(2));
-  word vis, ir;
+  word uv,vis, ir;
+  uv = analogRead(2);
+  writeUv(uv);
   readData(vis, ir);
+  Serial.println(uv);
+  Serial.println(batt);
+  Serial.println(vis);
+  Serial.println(ir);
+  
   writeVis(vis);
   writeIr(ir);
   batt++;
   writeBatt(batt);
   RFduinoBLE.advertisementData = advertisementData;
+  RFduinoBLE.begin();
   Serial.println("hi");
   
   delay(1000);
+  RFduinoBLE.end();
 }
 
 void writeUv(word val) {
@@ -92,15 +98,14 @@ void writeBatt(word val) {
 }
 
 void writeAdvertisementData(word val, int pos) {
-  byte temp[2] = {(byte) (val & 0xFF) + 1, (byte) ((val >> 8) & 0xFF) + 1};
-  if (!temp[0]) {
-    temp[0]=0xFF;
-    temp[1]=0xFF;
-  }
-  if (!temp[1]) {
-    temp[1] = 0xFF;
-  }
+  
+  byte temp[2] = {(byte) (val & 0xFF), (byte) ((val >> 8) & 0xFF)};
+  byte mask = 0 | (0b11 << (6-pos));
+  byte value = 0 | (((temp[0] & 1) << 1 | (temp[1] & 1)) << (6-pos));
+  temp[0] |= 1;
+  temp[1] |= 1;
   memcpy(advertisementData + pos, temp, 2);
+  advertisementData[8] = advertisementData[8] & ~mask | value;
 }
 
 boolean readData(unsigned int &vis, unsigned int &ir)

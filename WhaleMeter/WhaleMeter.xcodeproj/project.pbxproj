@@ -22,6 +22,9 @@
 		3F43F651190194F000D39D5D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F630190194F000D39D5D /* UIKit.framework */; };
 		3F43F659190194F000D39D5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F657190194F000D39D5D /* InfoPlist.strings */; };
 		3F43F65B190194F000D39D5D /* WhaleMeterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F65A190194F000D39D5D /* WhaleMeterTests.m */; };
+		3F43F66519019EDB00D39D5D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F66419019EDA00D39D5D /* MapKit.framework */; };
+		3F43F6751901B75900D39D5D /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F6741901B75900D39D5D /* conversion.c */; };
+		3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F6771901CBB200D39D5D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,18 @@
 			remoteInfo = WhaleMeter;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F43F66B1901B2C700D39D5D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3F43F629190194F000D39D5D /* WhaleMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhaleMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +71,10 @@
 		3F43F656190194F000D39D5D /* WhaleMeterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhaleMeterTests-Info.plist"; sourceTree = "<group>"; };
 		3F43F658190194F000D39D5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F43F65A190194F000D39D5D /* WhaleMeterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhaleMeterTests.m; sourceTree = "<group>"; };
+		3F43F66419019EDA00D39D5D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3F43F6741901B75900D39D5D /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion.c; sourceTree = "<group>"; };
+		3F43F6761901BABC00D39D5D /* conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conversion.h; sourceTree = "<group>"; };
+		3F43F6771901CBB200D39D5D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */,
+				3F43F66519019EDB00D39D5D /* MapKit.framework in Frameworks */,
 				3F43F62F190194F000D39D5D /* CoreGraphics.framework in Frameworks */,
 				3F43F631190194F000D39D5D /* UIKit.framework in Frameworks */,
 				3F43F62D190194F000D39D5D /* Foundation.framework in Frameworks */,
@@ -104,6 +125,8 @@
 		3F43F62B190194F000D39D5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F43F6771901CBB200D39D5D /* CoreLocation.framework */,
+				3F43F66419019EDA00D39D5D /* MapKit.framework */,
 				3F43F62C190194F000D39D5D /* Foundation.framework */,
 				3F43F62E190194F000D39D5D /* CoreGraphics.framework */,
 				3F43F630190194F000D39D5D /* UIKit.framework */,
@@ -124,6 +147,8 @@
 				3F43F645190194F000D39D5D /* WMSecondViewController.m */,
 				3F43F647190194F000D39D5D /* Images.xcassets */,
 				3F43F633190194F000D39D5D /* Supporting Files */,
+				3F43F6741901B75900D39D5D /* conversion.c */,
+				3F43F6761901BABC00D39D5D /* conversion.h */,
 			);
 			path = WhaleMeter;
 			sourceTree = "<group>";
@@ -167,6 +192,7 @@
 				3F43F625190194F000D39D5D /* Sources */,
 				3F43F626190194F000D39D5D /* Frameworks */,
 				3F43F627190194F000D39D5D /* Resources */,
+				3F43F66B1901B2C700D39D5D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -256,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F43F643190194F000D39D5D /* WMFirstViewController.m in Sources */,
+				3F43F6751901B75900D39D5D /* conversion.c in Sources */,
 				3F43F63D190194F000D39D5D /* WMAppDelegate.m in Sources */,
 				3F43F646190194F000D39D5D /* WMSecondViewController.m in Sources */,
 				3F43F639190194F000D39D5D /* main.m in Sources */,
@@ -386,6 +413,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
 				INFOPLIST_FILE = "WhaleMeter/WhaleMeter-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/proj/4.8.0/lib,
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -399,6 +431,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhaleMeter/WhaleMeter-Prefix.pch";
 				INFOPLIST_FILE = "WhaleMeter/WhaleMeter-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/proj/4.8.0/lib,
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
