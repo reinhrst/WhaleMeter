@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Reinoud Elhorst. All rights reserved.
 //
 
-#import "WMSecondViewController.h"
+#import "WMLogViewController.h"
 
-@interface WMSecondViewController ()
+@interface WMLogViewController ()
 
 @end
 
-@implementation WMSecondViewController
+@implementation WMLogViewController
 
 - (void)viewDidLoad
 {

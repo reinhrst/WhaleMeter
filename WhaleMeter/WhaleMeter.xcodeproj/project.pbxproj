@@ -14,8 +14,8 @@
 		3F43F639190194F000D39D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F638190194F000D39D5D /* main.m */; };
 		3F43F63D190194F000D39D5D /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F63C190194F000D39D5D /* WMAppDelegate.m */; };
 		3F43F640190194F000D39D5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F63E190194F000D39D5D /* Main.storyboard */; };
-		3F43F643190194F000D39D5D /* WMFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F642190194F000D39D5D /* WMFirstViewController.m */; };
-		3F43F646190194F000D39D5D /* WMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F645190194F000D39D5D /* WMSecondViewController.m */; };
+		3F43F643190194F000D39D5D /* WMMeasureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F642190194F000D39D5D /* WMMeasureViewController.m */; };
+		3F43F646190194F000D39D5D /* WMLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F645190194F000D39D5D /* WMLogViewController.m */; };
 		3F43F648190194F000D39D5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F43F647190194F000D39D5D /* Images.xcassets */; };
 		3F43F64F190194F000D39D5D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F64E190194F000D39D5D /* XCTest.framework */; };
 		3F43F650190194F000D39D5D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F62C190194F000D39D5D /* Foundation.framework */; };
@@ -25,6 +25,7 @@
 		3F43F66519019EDB00D39D5D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F66419019EDA00D39D5D /* MapKit.framework */; };
 		3F43F6751901B75900D39D5D /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F6741901B75900D39D5D /* conversion.c */; };
 		3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F6771901CBB200D39D5D /* CoreLocation.framework */; };
+		3FFB97C71903FAA600EB0C92 /* WMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +62,10 @@
 		3F43F63B190194F000D39D5D /* WMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppDelegate.h; sourceTree = "<group>"; };
 		3F43F63C190194F000D39D5D /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
 		3F43F63F190194F000D39D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F43F641190194F000D39D5D /* WMFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMFirstViewController.h; sourceTree = "<group>"; };
-		3F43F642190194F000D39D5D /* WMFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMFirstViewController.m; sourceTree = "<group>"; };
-		3F43F644190194F000D39D5D /* WMSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMSecondViewController.h; sourceTree = "<group>"; };
-		3F43F645190194F000D39D5D /* WMSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMSecondViewController.m; sourceTree = "<group>"; };
+		3F43F641190194F000D39D5D /* WMMeasureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMeasureViewController.h; sourceTree = "<group>"; };
+		3F43F642190194F000D39D5D /* WMMeasureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMeasureViewController.m; sourceTree = "<group>"; };
+		3F43F644190194F000D39D5D /* WMLogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMLogViewController.h; sourceTree = "<group>"; };
+		3F43F645190194F000D39D5D /* WMLogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMLogViewController.m; sourceTree = "<group>"; };
 		3F43F647190194F000D39D5D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3F43F64D190194F000D39D5D /* WhaleMeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhaleMeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F43F64E190194F000D39D5D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -75,6 +76,8 @@
 		3F43F6741901B75900D39D5D /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion.c; sourceTree = "<group>"; };
 		3F43F6761901BABC00D39D5D /* conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conversion.h; sourceTree = "<group>"; };
 		3F43F6771901CBB200D39D5D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3FFB97C51903FAA600EB0C92 /* WMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSettingsViewController.h; sourceTree = "<group>"; };
+		3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +144,12 @@
 				3F43F63B190194F000D39D5D /* WMAppDelegate.h */,
 				3F43F63C190194F000D39D5D /* WMAppDelegate.m */,
 				3F43F63E190194F000D39D5D /* Main.storyboard */,
-				3F43F641190194F000D39D5D /* WMFirstViewController.h */,
-				3F43F642190194F000D39D5D /* WMFirstViewController.m */,
-				3F43F644190194F000D39D5D /* WMSecondViewController.h */,
-				3F43F645190194F000D39D5D /* WMSecondViewController.m */,
+				3F43F641190194F000D39D5D /* WMMeasureViewController.h */,
+				3F43F642190194F000D39D5D /* WMMeasureViewController.m */,
+				3F43F644190194F000D39D5D /* WMLogViewController.h */,
+				3F43F645190194F000D39D5D /* WMLogViewController.m */,
+				3FFB97C51903FAA600EB0C92 /* WMSettingsViewController.h */,
+				3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */,
 				3F43F647190194F000D39D5D /* Images.xcassets */,
 				3F43F633190194F000D39D5D /* Supporting Files */,
 				3F43F6741901B75900D39D5D /* conversion.c */,
@@ -281,11 +286,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F43F643190194F000D39D5D /* WMFirstViewController.m in Sources */,
+				3F43F643190194F000D39D5D /* WMMeasureViewController.m in Sources */,
 				3F43F6751901B75900D39D5D /* conversion.c in Sources */,
 				3F43F63D190194F000D39D5D /* WMAppDelegate.m in Sources */,
-				3F43F646190194F000D39D5D /* WMSecondViewController.m in Sources */,
+				3F43F646190194F000D39D5D /* WMLogViewController.m in Sources */,
 				3F43F639190194F000D39D5D /* main.m in Sources */,
+				3FFB97C71903FAA600EB0C92 /* WMSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +506,7 @@
 				3F43F660190194F000D39D5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F43F661190194F000D39D5D /* Build configuration list for PBXNativeTarget "WhaleMeterTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +515,7 @@
 				3F43F663190194F000D39D5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

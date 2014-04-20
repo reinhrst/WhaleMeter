@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface WMFirstViewController : UIViewController
+@interface WMMeasureViewController : UIViewController
 @property(nonatomic, retain) IBOutlet UILabel *locationLabel;
 @property(nonatomic, retain) IBOutlet UILabel *luxLabel;
 @property(nonatomic, retain) IBOutlet UILabel *batteryLabel;

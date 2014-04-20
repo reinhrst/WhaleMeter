@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMSecondViewController : UIViewController
+@interface WMLogViewController : UIViewController
 
 @end

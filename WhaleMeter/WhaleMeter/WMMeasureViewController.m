@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Reinoud Elhorst. All rights reserved.
 //
 
-#import "WMFirstViewController.h"
+#import "WMMeasureViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBCentralManager.h>
@@ -24,11 +24,11 @@ struct manufacturerdata {
     uint16_t batt;
 };
 
-@interface WMFirstViewController () <CLLocationManagerDelegate,CBCentralManagerDelegate,MKMapViewDelegate>
+@interface WMMeasureViewController () <CLLocationManagerDelegate,CBCentralManagerDelegate,MKMapViewDelegate>
 
 @end
 
-@implementation WMFirstViewController
+@implementation WMMeasureViewController
 
 CLLocationManager* locationManager;
 CBCentralManager* mycentral;
