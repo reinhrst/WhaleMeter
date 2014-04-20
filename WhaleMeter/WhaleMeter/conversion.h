@@ -9,6 +9,6 @@
 #ifndef WhaleMeter_conversion_h
 #define WhaleMeter_conversion_h
 
-void WGS84toOSGB36(double* x, double* y);
+void WGS84toOSGB36(double* x, double* y, double* z);
 
 #endif

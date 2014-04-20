@@ -15,5 +15,9 @@
 @property(nonatomic, retain) IBOutlet UILabel *batteryLabel;
 @property(nonatomic, retain) IBOutlet UILabel *IRLabel;
 @property(nonatomic, retain) IBOutlet UILabel *UVLabel;
+@property(nonatomic, retain) IBOutlet UIView *lightLastUpdateView;
+@property(nonatomic, retain) IBOutlet UILabel *lightLastUpdateLabel;
+@property(nonatomic, retain) IBOutlet UIView *locationInaccurateView;
+@property(nonatomic, retain) IBOutlet UILabel *locationInaccurateLabel;
 @property(nonatomic, retain) IBOutlet MKMapView *map;
 @end

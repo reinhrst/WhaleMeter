@@ -234,10 +234,9 @@ void osGridToLatLong(double* x, double* y) {
     *y = lon * RAD_TO_DEG;
 }
 
-void WGS84toOSGB36(double* x, double* y) {
-    double z = 0.0;
+void WGS84toOSGB36(double* x, double* y, double* z) {
     struct datum fromdatum = DATUM_WGS84, todatum = DATUM_OSGB36;
-    convertDatum(x,y, &z, &fromdatum, &todatum);
+    convertDatum(x,y, z, &fromdatum, &todatum);
     latLongToOsGrid(x,y);
 }
 
