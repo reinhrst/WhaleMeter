@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMSettingsViewController : UIViewController
-
+@interface WMSettingsViewController : UITableViewController
+@property(nonatomic, retain) IBOutlet UISegmentedControl* coordinateSystemControl;
+@property(nonatomic, retain) IBOutlet UISegmentedControl* maptypeControl;
+@property(nonatomic, retain) IBOutlet UITextField* defaultEmail;
+@property(nonatomic, retain) IBOutlet UITextField* defaultComment;
+-(IBAction)somethingChanged:(id)sender;
 @end

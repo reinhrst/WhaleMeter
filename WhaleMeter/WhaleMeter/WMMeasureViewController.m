@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBCentralManager.h>
+#import <Foundation/NSUserDefaults.h>
 #import <MapKit/MapKit.h>
 #import "conversion.h"
 #import "math.h"
@@ -37,21 +38,36 @@ NSTimer* updateTimeoutView;
 NSDate* lastLightUpdate;
 NSString* locationLine;
 NSString* lightLine;
+NSUserDefaults* settings;
 
 #pragma mark view
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self startStandardUpdates];
     mycentral = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
     self.map.delegate = self;
+    settings =[NSUserDefaults standardUserDefaults];
     updateTimeoutView = [NSTimer scheduledTimerWithTimeInterval: 1
                                                          target: self
                                                        selector: @selector(updateTimeoutView)
                                                        userInfo: nil
                                                         repeats: YES];
-    [self showLocationInaccurateText:@"determining location" show:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self startLocationUpdates];
+    self.map.mapType =
+        [@"Map" isEqualToString:[settings stringForKey:@"Maptype"]] ? MKMapTypeStandard :
+        [@"Satellite" isEqualToString:[settings stringForKey:@"Maptype"]] ? MKMapTypeSatellite :
+        MKMapTypeHybrid;
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self stopLocationUpdates];
 }
 
 
@@ -113,11 +129,18 @@ NSString* lightLine;
         double y = location.coordinate.longitude;
         double z = location.altitude;
         WGS84toOSGB36(&x,&y,&z);
-        [self.locationLabel setText:[NSString stringWithFormat:
-                                     @"%.1f  %.1f",x, y]];
+        
+        if ([@"OSGB36" isEqualToString:[settings valueForKey:@"Coordinate System"]]) {
+            [self.locationLabel setText:[NSString stringWithFormat:@"%.1f  %.1f",x, y]];
+        } else {
+            [self.locationLabel setText:[NSString stringWithFormat:@"%@  %@",
+                                         [self locationDegreesToString:location.coordinate.longitude],
+                                          [self locationDegreesToString:location.coordinate.latitude]
+                                         ]];
+        }
         if (location.horizontalAccuracy > 5) {
             [self showLocationInaccurateText:[NSString
-                                              stringWithFormat:@"Inaccurate %.0fm",
+                                              stringWithFormat:@"Inaccurate ±%.0fm",
                                               location.horizontalAccuracy]
                                         show:YES];
         } else {
@@ -158,17 +181,33 @@ NSString* lightLine;
     [self.map setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
-- (void)startStandardUpdates
+- (void)startLocationUpdates
 {
-    // Create the location manager if this object does not
-    // already have one.
-    if (nil == locationManager)
+    if (nil == locationManager) {
         locationManager = [[CLLocationManager alloc] init];
-    
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
+        
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    }
+    [self showLocationInaccurateText:@"determining location" show:YES];
     [locationManager startUpdatingLocation];
+}
+
+- (void)stopLocationUpdates
+{
+    [locationManager stopUpdatingLocation];
+}
+
+-(NSString*)locationDegreesToString:(CLLocationDegrees) degrees
+{
+    if (0) {
+        int deg = (int) degrees;
+        int min = (int) ((degrees - deg)*60);
+        double sec = ((degrees - deg)*60 - min) * 60;
+        return  [NSString stringWithFormat:@"%d°%02d'%02.0f''", deg, min, sec];
+    } else {
+        return [NSString stringWithFormat:@"%07.04f", degrees];
+    }
 }
 
 #pragma mark BLE

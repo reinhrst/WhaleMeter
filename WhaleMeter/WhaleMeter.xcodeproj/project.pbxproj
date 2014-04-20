@@ -26,6 +26,7 @@
 		3F43F6751901B75900D39D5D /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F6741901B75900D39D5D /* conversion.c */; };
 		3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F6771901CBB200D39D5D /* CoreLocation.framework */; };
 		3FFB97C71903FAA600EB0C92 /* WMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */; };
+		3FFB97C91904142700EB0C92 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB97C81904142700EB0C92 /* DefaultSettings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		3F43F6771901CBB200D39D5D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3FFB97C51903FAA600EB0C92 /* WMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSettingsViewController.h; sourceTree = "<group>"; };
 		3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSettingsViewController.m; sourceTree = "<group>"; };
+		3FFB97C81904142700EB0C92 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				3F43F633190194F000D39D5D /* Supporting Files */,
 				3F43F6741901B75900D39D5D /* conversion.c */,
 				3F43F6761901BABC00D39D5D /* conversion.h */,
+				3FFB97C81904142700EB0C92 /* DefaultSettings.plist */,
 			);
 			path = WhaleMeter;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F43F648190194F000D39D5D /* Images.xcassets in Resources */,
+				3FFB97C91904142700EB0C92 /* DefaultSettings.plist in Resources */,
 				3F43F637190194F000D39D5D /* InfoPlist.strings in Resources */,
 				3F43F640190194F000D39D5D /* Main.storyboard in Resources */,
 			);

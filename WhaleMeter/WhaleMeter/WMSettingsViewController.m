@@ -7,6 +7,7 @@
 //
 
 #import "WMSettingsViewController.h"
+#import <Foundation/NSUserDefaults.h>
 
 @interface WMSettingsViewController ()
 
@@ -14,19 +15,45 @@
 
 @implementation WMSettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+NSUserDefaults* settings;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    settings = [NSUserDefaults standardUserDefaults];
+    [self
+     setDefault:[settings stringForKey:@"Coordinate System"]
+     forSegmentedControl:self.coordinateSystemControl];
+    
+    [self
+     setDefault:[settings stringForKey:@"Maptype"]
+     forSegmentedControl:self.maptypeControl];
+    self.defaultEmail.text = [settings stringForKey:@"Default Email"];
+    self.defaultComment.text = [settings stringForKey:@"Default Comment"];
+}
+
+-(void)setDefault:(NSString*)value forSegmentedControl:(UISegmentedControl*)control
+{
+    for(unsigned int i =0; i < control.numberOfSegments; i++) {
+        if ([value isEqualToString:[control titleForSegmentAtIndex:i]]) {
+            control.selectedSegmentIndex=i;
+        }
+    }
+}
+
+-(IBAction)somethingChanged:(id)sender
+{
+    NSLog(@"change");
+    [settings setObject:[self.coordinateSystemControl
+                         titleForSegmentAtIndex:self.coordinateSystemControl.selectedSegmentIndex]
+                 forKey:@"Coordinate System"];
+    [settings setObject:[self.maptypeControl
+                         titleForSegmentAtIndex:self.maptypeControl.selectedSegmentIndex]
+                 forKey:@"Maptype"];
+    [settings setObject:self.defaultEmail.text
+                 forKey:@"Default Email"];
+    [settings setObject:self.defaultComment.text
+                 forKey:@"Default Comment"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,16 +61,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
