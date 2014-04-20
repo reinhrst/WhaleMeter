@@ -7,23 +7,18 @@
 //
 
 #import "WMMeasureViewController.h"
+#import "WMFileManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBCentralManager.h>
 #import <Foundation/NSUserDefaults.h>
 #import <MapKit/MapKit.h>
+#import <AudioToolbox/AudioServices.h>
 #import "conversion.h"
 #import "math.h"
 #import "stdlib.h"
 
 
-struct manufacturerdata {
-    uint16_t _void;
-    uint16_t uv;
-    uint16_t vis;
-    uint16_t ir;
-    uint16_t batt;
-};
 
 @interface WMMeasureViewController () <CLLocationManagerDelegate,CBCentralManagerDelegate,MKMapViewDelegate>
 
@@ -39,6 +34,12 @@ NSDate* lastLightUpdate;
 NSString* locationLine;
 NSString* lightLine;
 NSUserDefaults* settings;
+uint16_t lastBatt;
+NSString* preparedLine;
+
+#define BATT_TOP 400
+#define BATT_BOTTOM 330
+#define BATT_TIME 16
 
 #pragma mark view
 
@@ -147,7 +148,7 @@ NSUserDefaults* settings;
             [self showLocationInaccurateText:nil show:NO];
         }
         locationLine = [NSString
-                        stringWithFormat:@"%f,%f,%f,%f,%f,%f,%f%f",
+                        stringWithFormat:@"%f,%f,%f,%.1f,%.1f,%.1f,%.1f,%.1f",
                         location.coordinate.latitude,
                         location.coordinate.longitude,
                         location.altitude,
@@ -200,14 +201,10 @@ NSUserDefaults* settings;
 
 -(NSString*)locationDegreesToString:(CLLocationDegrees) degrees
 {
-    if (0) {
-        int deg = (int) degrees;
-        int min = (int) ((degrees - deg)*60);
-        double sec = ((degrees - deg)*60 - min) * 60;
-        return  [NSString stringWithFormat:@"%d°%02d'%02.0f''", deg, min, sec];
-    } else {
-        return [NSString stringWithFormat:@"%07.04f", degrees];
-    }
+    int deg = (int) degrees;
+    int min = (int) ((degrees - deg)*60);
+    double sec = ((degrees - deg)*60 - min) * 60;
+    return  [NSString stringWithFormat:@"%d°%02d'%06.02f''", deg, min, sec];
 }
 
 #pragma mark BLE
@@ -242,16 +239,31 @@ NSUserDefaults* settings;
     } else {
         [self.luxLabel setText:[NSString stringWithFormat:@"%.3g", lux]];
     }
-    [self.batteryLabel setText:[NSString stringWithFormat:@"%d", batt]];
     if (ir == 0xFFFF) {
         [self.IRLabel setText:[NSString stringWithFormat:@"> %d", 0xFFFF]];
     } else {
         [self.IRLabel setText:[NSString stringWithFormat:@"%d", ir]];
     }
     [self.UVLabel setText:[NSString stringWithFormat:@"%d", uv]];
+    
+    if (batt > lastBatt) {
+        if (batt <= lastBatt + 5) {
+            batt = lastBatt; //battery level shouldn't go up
+        }
+    }
+    lastBatt = batt;
+    
+    
+    [self.batteryLabel setText:[NSString stringWithFormat:@"%d%% (%dh)",
+                                (batt - BATT_BOTTOM) * 100 / (BATT_TOP-BATT_BOTTOM),
+                                (batt - BATT_BOTTOM) * BATT_TIME / (BATT_TOP-BATT_BOTTOM)
+                                ]];
+
+    
     lastLightUpdate = [NSDate date];
-    lightLine = [NSString stringWithFormat:@"%f,%d,%d",
+    lightLine = [NSString stringWithFormat:@"%f,%d,%d,%d",
                  lux,
+                 vis,
                  ir,
                  uv
                  ];
@@ -301,5 +313,53 @@ NSUserDefaults* settings;
     return val;
 }
 
+#pragma mark logging
+
+-(IBAction)logMeasurements:(id)sender
+{
+    NSString* line = [self buildLogLine];
+    [self writeLogLine:line withComment:[settings stringForKey:@"Default Comment"]];
+}
+
+-(NSString*)buildLogLine
+{
+    if (!lightLine || !locationLine) {
+        return @"Logging before we have data,";
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [NSString stringWithFormat:@"%@s,%@,%@,",
+            [formatter stringFromDate:[NSDate date]],
+            lightLine,
+            locationLine
+            ];
+}
+
+-(void)writeLogLine:(NSString*)line withComment:(NSString*)comment{
+    [[WMFileManager sharedInstance] writeLine:[line stringByAppendingString:comment]];
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
+-(IBAction)showCommentBox:(id)sender
+{
+    self.modalMaker.hidden = NO;
+    self.commentBox.hidden = NO;
+    self.commentField.text=[settings stringForKey:@"Default Comment"];
+    preparedLine = [self buildLogLine];
+    [self.commentField becomeFirstResponder];
+}
+
+-(IBAction)submitCommentBox:(id)sender
+{
+    [self writeLogLine:preparedLine withComment:self.commentField.text];
+    [self cancelCommentBox:sender];
+}
+
+-(IBAction)cancelCommentBox:(id)sender
+{
+    self.modalMaker.hidden = YES;
+    self.commentBox.hidden = YES;
+    [self.commentField resignFirstResponder];
+}
 
 @end

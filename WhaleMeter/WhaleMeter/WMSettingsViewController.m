@@ -43,7 +43,6 @@ NSUserDefaults* settings;
 
 -(IBAction)somethingChanged:(id)sender
 {
-    NSLog(@"change");
     [settings setObject:[self.coordinateSystemControl
                          titleForSegmentAtIndex:self.coordinateSystemControl.selectedSegmentIndex]
                  forKey:@"Coordinate System"];

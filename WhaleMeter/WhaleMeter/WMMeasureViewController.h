@@ -20,4 +20,7 @@
 @property(nonatomic, retain) IBOutlet UIView *locationInaccurateView;
 @property(nonatomic, retain) IBOutlet UILabel *locationInaccurateLabel;
 @property(nonatomic, retain) IBOutlet MKMapView *map;
+@property(nonatomic, retain) IBOutlet UIView *modalMaker;
+@property(nonatomic, retain) IBOutlet UIView *commentBox;
+@property(nonatomic, retain) IBOutlet UITextField *commentField;
 @end

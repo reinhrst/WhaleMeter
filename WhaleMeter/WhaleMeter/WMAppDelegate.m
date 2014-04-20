@@ -7,6 +7,7 @@
 //
 
 #import "WMAppDelegate.h"
+#import "WMFileManager.h"
 #import <Foundation/NSUserDefaults.h>
 
 
@@ -20,6 +21,7 @@
     NSDictionary *defaultPrefs =
         [NSDictionary dictionaryWithContentsOfURL:defaultPrefsFile];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
+    [WMFileManager sharedInstance];
     
     return YES;
 }
