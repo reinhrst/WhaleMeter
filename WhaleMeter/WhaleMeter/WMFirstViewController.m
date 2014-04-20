@@ -62,10 +62,9 @@ CBCentralManager* mycentral;
     if (abs(howRecent) < 15.0) {
         double x = location.coordinate.latitude;
         double y = location.coordinate.longitude;
-        NSLog(@"%f, %f", x,y);
         WGS84toOSGB36(&x,&y);
         [self.locationLabel setText:[NSString stringWithFormat:
-                                     @"%.1f,%.1f",x, y]];
+                                     @"%.1f, %.1f",x, y]];
     }
 }
 
@@ -90,9 +89,7 @@ uint16_t decode(const uint8_t* bytes, uint8_t pos){
         val ^= 0x1;
     }
     if (!((correction >> (6-pos)) & 1)) {
-        NSLog(@"%d %d", pos, val);
         val ^= 0x100;
-        NSLog(@"%d %d", pos, val);
     }
     return val;
 }
@@ -101,15 +98,13 @@ uint16_t decode(const uint8_t* bytes, uint8_t pos){
 {
     const uint8_t* data = [[advertisementData valueForKey:@"kCBAdvDataManufacturerData"] bytes];
     
-    NSLog(@"%@", [advertisementData valueForKey:@"kCBAdvDataManufacturerData"]);
-    
     uint16_t uv = decode(data+2, 0);
     uint16_t vis = decode(data+2, 2);
     uint16_t ir = decode(data+2, 4);
     uint16_t batt = decode(data+2, 6);
 
     double lux = [self luxFromVisible:vis andIR:ir];
-    [self.luxLabel setText:[NSString stringWithFormat:@"%.2f", lux]];
+    [self.luxLabel setText:[NSString stringWithFormat:@"%.4g", lux]];
     [self.batteryLabel setText:[NSString stringWithFormat:@"%d", batt]];
     [self.IRLabel setText:[NSString stringWithFormat:@"%d", ir]];
     [self.UVLabel setText:[NSString stringWithFormat:@"%d", uv]];
@@ -124,7 +119,6 @@ uint16_t decode(const uint8_t* bytes, uint8_t pos){
     double ch0 = (double) vis;
     double ch1 = (double) ir;
     double ratio = ch1 / ch0;
-    NSLog(@"%f %f", ch0, ch1);
     if (ratio < 0.5) {
         return 0.0304 * ch0 - 0.062 * ch0 * pow(ch1/ch0,1.4);
     }
