@@ -9,7 +9,7 @@
 #import "WMSettingsViewController.h"
 #import <Foundation/NSUserDefaults.h>
 
-@interface WMSettingsViewController ()
+@interface WMSettingsViewController () <UITextFieldDelegate>
 
 @end
 
@@ -54,6 +54,12 @@ NSUserDefaults* settings;
                  forKey:@"Default Email"];
     [settings setObject:self.defaultComment.text
                  forKey:@"Default Comment"];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning
