@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreBluetooth/CBCentralManager.h>
+#import <MapKit/MapKit.h>
 #import "conversion.h"
 #import "math.h"
 #import "stdlib.h"
@@ -23,7 +24,7 @@ struct manufacturerdata {
     uint16_t batt;
 };
 
-@interface WMFirstViewController () <CLLocationManagerDelegate,CBCentralManagerDelegate>
+@interface WMFirstViewController () <CLLocationManagerDelegate,CBCentralManagerDelegate,MKMapViewDelegate>
 
 @end
 
@@ -31,13 +32,14 @@ struct manufacturerdata {
 
 CLLocationManager* locationManager;
 CBCentralManager* mycentral;
-
+NSTimer* mapBackToFollowingModeTimer;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self startStandardUpdates];
     mycentral = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+    self.map.delegate = self;
 
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -64,8 +66,29 @@ CBCentralManager* mycentral;
         double y = location.coordinate.longitude;
         WGS84toOSGB36(&x,&y);
         [self.locationLabel setText:[NSString stringWithFormat:
-                                     @"%.1f, %.1f",x, y]];
+                                     @"%.1f  %.1f",x, y]];
     }
+}
+
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered
+{
+    [self.map setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [mapView setUserTrackingMode:MKUserTrackingModeNone];
+    if (mapBackToFollowingModeTimer) {
+        [mapBackToFollowingModeTimer invalidate];
+    }
+    mapBackToFollowingModeTimer = [NSTimer scheduledTimerWithTimeInterval: 20
+                                                          target: self
+                                                        selector: @selector(mapTimerFire)
+                                                        userInfo: nil
+                                                         repeats: NO];
+}
+
+- (void) mapTimerFire {
+    [self.map setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
 - (void)startStandardUpdates

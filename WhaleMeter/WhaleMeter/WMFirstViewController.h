@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface WMFirstViewController : UIViewController
 @property(nonatomic, retain) IBOutlet UILabel *locationLabel;
@@ -14,4 +15,5 @@
 @property(nonatomic, retain) IBOutlet UILabel *batteryLabel;
 @property(nonatomic, retain) IBOutlet UILabel *IRLabel;
 @property(nonatomic, retain) IBOutlet UILabel *UVLabel;
+@property(nonatomic, retain) IBOutlet MKMapView *map;
 @end
