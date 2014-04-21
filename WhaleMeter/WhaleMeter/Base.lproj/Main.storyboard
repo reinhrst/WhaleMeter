@@ -172,7 +172,7 @@
                                         <rect key="frame" x="20" y="49" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <action selector="submitCommentBox:" destination="CZ4-MO-1fc" eventType="editingDidEndOnExit" id="p6l-9f-wNc"/>
                                         </connections>
@@ -254,7 +254,11 @@
                                 <rect key="frame" x="0.0" y="64" width="335" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Email" width="90" id="dmW-e0-5W5"/>
+                                    <barButtonItem title="Email" width="90" id="dmW-e0-5W5">
+                                        <connections>
+                                            <action selector="sendByEmail:" destination="UfH-fC-0yb" id="ozr-JX-0Gc"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem enabled="NO" title="Undo" width="90" id="TzD-xL-gpw">
                                         <connections>
                                             <action selector="undo:" destination="UfH-fC-0yb" id="ll1-mj-ncQ"/>
@@ -489,7 +493,7 @@
                                                     <rect key="frame" x="20" y="44" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="somethingChanged:" destination="bv9-RT-2xU" eventType="editingChanged" id="bh7-BQ-EvV"/>
                                                         <outlet property="delegate" destination="bv9-RT-2xU" id="KTT-Z2-kyr"/>

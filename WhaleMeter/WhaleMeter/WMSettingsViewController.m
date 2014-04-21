@@ -9,6 +9,8 @@
 #import "WMSettingsViewController.h"
 #import "WMFileManager.h"
 #import <Foundation/NSUserDefaults.h>
+#import <AudioToolbox/AudioServices.h>
+
 
 @interface WMSettingsViewController ()
 
@@ -58,6 +60,7 @@ NSUserDefaults* settings;
 -(IBAction)startNewLogfilePressed:(id)sender
 {
     [[WMFileManager sharedInstance] startNewLogfile];
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

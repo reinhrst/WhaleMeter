@@ -25,6 +25,8 @@
 		3F43F66519019EDB00D39D5D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F66419019EDA00D39D5D /* MapKit.framework */; };
 		3F43F6751901B75900D39D5D /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F6741901B75900D39D5D /* conversion.c */; };
 		3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F43F6771901CBB200D39D5D /* CoreLocation.framework */; };
+		3F94E09D19054619003B6492 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F94E09C19054619003B6492 /* MessageUI.framework */; };
+		3F94E09F19054621003B6492 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F94E09E19054621003B6492 /* AudioToolbox.framework */; };
 		3FC1EF5F19050DD300222F6A /* WMLogfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1EF5E19050DD300222F6A /* WMLogfileViewController.m */; };
 		3FFB97C71903FAA600EB0C92 /* WMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB97C61903FAA600EB0C92 /* WMSettingsViewController.m */; };
 		3FFB97C91904142700EB0C92 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB97C81904142700EB0C92 /* DefaultSettings.plist */; };
@@ -79,6 +81,8 @@
 		3F43F6741901B75900D39D5D /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion.c; sourceTree = "<group>"; };
 		3F43F6761901BABC00D39D5D /* conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conversion.h; sourceTree = "<group>"; };
 		3F43F6771901CBB200D39D5D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3F94E09C19054619003B6492 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3F94E09E19054621003B6492 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3FC1EF5D19050DD300222F6A /* WMLogfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLogfileViewController.h; sourceTree = "<group>"; };
 		3FC1EF5E19050DD300222F6A /* WMLogfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLogfileViewController.m; sourceTree = "<group>"; };
 		3FFB97C51903FAA600EB0C92 /* WMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSettingsViewController.h; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F94E09F19054621003B6492 /* AudioToolbox.framework in Frameworks */,
+				3F94E09D19054619003B6492 /* MessageUI.framework in Frameworks */,
 				3F43F6781901CBB200D39D5D /* CoreLocation.framework in Frameworks */,
 				3F43F66519019EDB00D39D5D /* MapKit.framework in Frameworks */,
 				3F43F62F190194F000D39D5D /* CoreGraphics.framework in Frameworks */,
@@ -136,6 +142,8 @@
 		3F43F62B190194F000D39D5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F94E09E19054621003B6492 /* AudioToolbox.framework */,
+				3F94E09C19054619003B6492 /* MessageUI.framework */,
 				3F43F6771901CBB200D39D5D /* CoreLocation.framework */,
 				3F43F66419019EDA00D39D5D /* MapKit.framework */,
 				3F43F62C190194F000D39D5D /* Foundation.framework */,

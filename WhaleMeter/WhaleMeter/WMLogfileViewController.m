@@ -8,9 +8,11 @@
 
 #import "WMLogfileViewController.h"
 #import "WMFileManager.h"
+#import <MessageUI/MFMailComposeViewController.h>
+
 #define COMMENT_FIELD_INDEX 13
 
-@interface WMLogfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface WMLogfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -39,8 +41,8 @@ UIActionSheet* deleteFileActionSheet;
 -(void) viewWillAppear:(BOOL)animated
 {
     self.navigationItem.title = self.fileName;
-    lines = [NSMutableArray
-             arrayWithObject:[[WMFileManager sharedInstance] getLogfileLines:self.fileName]];
+    NSString* fileContent = [[WMFileManager sharedInstance] getLogfileContent:self.fileName];
+    lines = [NSMutableArray arrayWithObject:[fileContent componentsSeparatedByString:@"\n"]];
     [self.tableView reloadData];
 }
 
@@ -177,4 +179,24 @@ UIActionSheet* deleteFileActionSheet;
     [self checkEnableUndoButton];
     [self editCommentCancel:sender];
 }
+
+-(IBAction)sendByEmail:(id)sender
+{
+    MFMailComposeViewController* mailViewController = [MFMailComposeViewController new];
+    mailViewController.mailComposeDelegate = self;
+    NSString* to = [[NSUserDefaults standardUserDefaults] stringForKey:@"Default Email"];
+    [mailViewController setToRecipients:[to componentsSeparatedByString:@","]];
+    [mailViewController setSubject:[NSString stringWithFormat:@"Whalemeter: %@", self.fileName]];
+    NSData* data = [[[WMFileManager sharedInstance] getLogfileContent:self.fileName]
+                    dataUsingEncoding:NSUTF8StringEncoding];
+    [mailViewController addAttachmentData:data mimeType:@"text/csv" fileName:self.fileName];
+    [self presentViewController:mailViewController animated:YES completion:NULL];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end

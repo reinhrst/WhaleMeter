@@ -30,8 +30,7 @@ NSString* activeFilename;
 - (void) startNewLogfile {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH.mm.ss.'csv'"];
-    activeFilename = [[self applicationDocumentsDirectory].path
-                      stringByAppendingPathComponent:[formatter stringFromDate:[NSDate date]]];
+    activeFilename = [self getFilePath:[formatter stringFromDate:[NSDate date]]];
 }
 
 - (NSURL *)applicationDocumentsDirectory
@@ -63,29 +62,23 @@ NSString* activeFilename;
                                     error:NULL];
 }
 
--(NSArray*) getLogfileLines:(NSString*)filename
+-(NSString*) getLogfileContent:(NSString*)filename
 {
     NSString* path = [[self applicationDocumentsDirectory].path
                       stringByAppendingPathComponent: filename];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        return @[];
-    }
-    NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-    return [fileContents componentsSeparatedByString:@"\n"];
+    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 }
 
 -(void) deleteFile:(NSString*) filename
 {
     NSFileManager* fileManager = [NSFileManager defaultManager];
-    NSString* path = [[self applicationDocumentsDirectory].path
-                      stringByAppendingPathComponent: filename];
+    NSString* path = [self getFilePath:filename];
     [fileManager removeItemAtPath:path error:NULL];
 }
 
 -(void) writeFile:(NSString*) filename withData:(NSString*)string {
     NSFileManager* fileManager = [NSFileManager defaultManager];
-    NSString* path = [[self applicationDocumentsDirectory].path
-                      stringByAppendingPathComponent: filename];
+    NSString* path = [self getFilePath:filename];
 
     if ([fileManager fileExistsAtPath:path]) {
         [fileManager removeItemAtPath:path error:NULL];
@@ -94,5 +87,8 @@ NSString* activeFilename;
     [fileManager createFileAtPath:activeFilename contents:data attributes:nil];
 }
 
+-(NSString*) getFilePath:(NSString* ) filename {
+    return [[self applicationDocumentsDirectory].path stringByAppendingPathComponent: filename];
+}
 
 @end

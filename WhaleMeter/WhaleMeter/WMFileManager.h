@@ -13,7 +13,7 @@
 - (void) startNewLogfile;
 - (void) writeLine:(NSString*)line withHeader:(NSString*)header;
 -(NSArray*) getAllLogfileNames;
--(NSArray*) getLogfileLines:(NSString*)filename;
+-(NSString*) getLogfileContent:(NSString*)filename;
 -(void) writeFile:(NSString*) filename withData:(NSString*)data;
 -(void) deleteFile:(NSString*) filename;
 @end
