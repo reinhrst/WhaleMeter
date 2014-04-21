@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMLogViewController : UIViewController
-
+@interface WMLogViewController : UITableViewController
+@property(nonatomic, retain) IBOutlet UITableView* tableView;
 @end

@@ -10,7 +10,6 @@
 
 @implementation WMFileManager
 NSString* activeFilename;
-NSFileHandle *activeFile;
 
 + (WMFileManager*)sharedInstance
 {
@@ -24,12 +23,15 @@ NSFileHandle *activeFile;
 
 -(id) init
 {
+    [self startNewLogfile];
+    return self;
+}
+
+- (void) startNewLogfile {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH.mm.ss.'csv'"];
     activeFilename = [[self applicationDocumentsDirectory].path
                       stringByAppendingPathComponent:[formatter stringFromDate:[NSDate date]]];
-    NSLog(@"%@", activeFilename);
-    return self;
 }
 
 - (NSURL *)applicationDocumentsDirectory
@@ -38,19 +40,59 @@ NSFileHandle *activeFile;
                                                    inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void) writeLine:(NSString*)line
+- (void) writeLine:(NSString*)line withHeader:(NSString* ) header
 {
-    if(!activeFile) {
-        [[NSFileManager defaultManager] createFileAtPath:activeFilename contents:nil attributes:nil];
-        activeFile = [NSFileHandle fileHandleForWritingAtPath:activeFilename];
-        [activeFile writeData:[
-        @"date,lux,visible,ir,uv,"
-                               "WGS84_lat,WGS84_lon,WGS84_alt,"
-                               "OSGB36_northing,OSGB36_easting,OSGB36_altitude,"
-                               "accuracy_horizontal,accuracy_vertical,comments"
-                               dataUsingEncoding:NSUTF8StringEncoding]];
+    NSFileHandle* file;
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:activeFilename]) {
+        NSData* headerData = [[NSString stringWithFormat:@"%@\n", header]
+                              dataUsingEncoding:NSUTF8StringEncoding];
+        [fileManager createFileAtPath:activeFilename contents:headerData attributes:nil];
     }
-    [activeFile writeData:[[NSString stringWithFormat:@"%@\n", line]
+    file = [NSFileHandle fileHandleForWritingAtPath:activeFilename];
+    [file seekToEndOfFile];
+    [file writeData:[[NSString stringWithFormat:@"%@\n", line]
                            dataUsingEncoding:NSUTF8StringEncoding]];
+    [file closeFile];
 }
+
+-(NSArray*) getAllLogfileNames
+{
+    return [[NSFileManager defaultManager]
+                contentsOfDirectoryAtPath:[self applicationDocumentsDirectory].path
+                                    error:NULL];
+}
+
+-(NSArray*) getLogfileLines:(NSString*)filename
+{
+    NSString* path = [[self applicationDocumentsDirectory].path
+                      stringByAppendingPathComponent: filename];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        return @[];
+    }
+    NSString *fileContents = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    return [fileContents componentsSeparatedByString:@"\n"];
+}
+
+-(void) deleteFile:(NSString*) filename
+{
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSString* path = [[self applicationDocumentsDirectory].path
+                      stringByAppendingPathComponent: filename];
+    [fileManager removeItemAtPath:path error:NULL];
+}
+
+-(void) writeFile:(NSString*) filename withData:(NSString*)string {
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSString* path = [[self applicationDocumentsDirectory].path
+                      stringByAppendingPathComponent: filename];
+
+    if ([fileManager fileExistsAtPath:path]) {
+        [fileManager removeItemAtPath:path error:NULL];
+    }
+    NSData* data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:activeFilename contents:data attributes:nil];
+}
+
+
 @end

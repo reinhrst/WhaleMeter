@@ -172,7 +172,7 @@
                                         <rect key="frame" x="20" y="49" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done"/>
                                         <connections>
                                             <action selector="submitCommentBox:" destination="CZ4-MO-1fc" eventType="editingDidEndOnExit" id="p6l-9f-wNc"/>
                                         </connections>
@@ -204,24 +204,166 @@
             </objects>
             <point key="canvasLocation" x="675" y="-454"/>
         </scene>
-        <!--Log View Controller - Log-->
-        <scene sceneID="ot8-2e-RuS">
+        <!--Log View Controller - Log files-->
+        <scene sceneID="FeE-Bs-4je">
             <objects>
-                <viewController title="Log" id="QUy-BD-bpt" customClass="WMLogViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FgS-U6-xeU"/>
-                        <viewControllerLayoutGuide type="bottom" id="stI-4g-hlJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gMD-aP-Fq6">
+                <tableViewController id="e9X-LA-eTB" customClass="WMLogViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Urp-kO-Uwp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogfileCell" id="6v3-ly-T7s">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6v3-ly-T7s" id="Ltu-Us-mbG">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="UfH-fC-0yb" kind="push" id="3hq-ak-IfB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="e9X-LA-eTB" id="Rxo-Bx-s1P"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Log files" id="ubO-Ag-bib"/>
+                    <connections>
+                        <outlet property="tableView" destination="Urp-kO-Uwp" id="dbR-5C-ct4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qti-ha-haQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="186"/>
+        </scene>
+        <!--Logfile View Controller-->
+        <scene sceneID="njf-gy-7fh">
+            <objects>
+                <viewController id="UfH-fC-0yb" customClass="WMLogfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vPX-Kx-r7P"/>
+                        <viewControllerLayoutGuide type="bottom" id="rKG-qW-8eq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Oi-CO-VrA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-hH-wmx">
+                                <rect key="frame" x="0.0" y="64" width="335" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Email" width="90" id="dmW-e0-5W5"/>
+                                    <barButtonItem enabled="NO" title="Undo" width="90" id="TzD-xL-gpw">
+                                        <connections>
+                                            <action selector="undo:" destination="UfH-fC-0yb" id="ll1-mj-ncQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Delete File" width="90" id="2xV-5V-hNQ">
+                                        <connections>
+                                            <action selector="deleteFileButtonPress:" destination="UfH-fC-0yb" id="LG8-ak-REi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="D1G-Ha-jsG">
+                                <rect key="frame" x="0.0" y="108" width="320" height="412"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoglineCell" id="La9-LS-ECy">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="La9-LS-ECy" id="WBM-Fb-nfH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="UfH-fC-0yb" id="azh-DC-A02"/>
+                                    <outlet property="delegate" destination="UfH-fC-0yb" id="gqK-nt-K91"/>
+                                </connections>
+                            </tableView>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpj-Yk-Ur0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVu-4E-Rli">
+                                <rect key="frame" x="20" y="90" width="280" height="154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OM2-ns-8Q0">
+                                        <rect key="frame" x="20" y="20" width="76" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDu-Px-pcV">
+                                        <rect key="frame" x="0.0" y="96" width="128" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Update">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editCommentSubmit:" destination="UfH-fC-0yb" eventType="touchUpInside" id="Ot8-I9-C0l"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u76-BQ-y6I">
+                                        <rect key="frame" x="152" y="96" width="128" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editCommentCancel:" destination="UfH-fC-0yb" eventType="touchUpInside" id="Vh3-Af-D4e"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vq2-lI-vAp">
+                                        <rect key="frame" x="20" y="49" width="240" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="editCommentSubmit:" destination="UfH-fC-0yb" eventType="editingDidEndOnExit" id="hwa-RZ-xad"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Log" image="second" id="Z7h-1E-pvt"/>
+                    <navigationItem key="navigationItem" id="qH9-Kg-pYq"/>
+                    <connections>
+                        <outlet property="commentBox" destination="YVu-4E-Rli" id="mN6-tB-3lc"/>
+                        <outlet property="commentField" destination="Vq2-lI-vAp" id="8Kz-dx-Vhm"/>
+                        <outlet property="modalMaker" destination="bpj-Yk-Ur0" id="yjf-LM-898"/>
+                        <outlet property="tableView" destination="D1G-Ha-jsG" id="bsI-2G-XBt"/>
+                        <outlet property="undoButton" destination="TzD-xL-gpw" id="1HC-WD-pnz"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bpg-bW-uGZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="675" y="182"/>
+            <point key="canvasLocation" x="1673" y="186"/>
+        </scene>
+        <!--Navigation Controller - Log files-->
+        <scene sceneID="8Fz-C1-woC">
+            <objects>
+                <navigationController title="Log files" definesPresentationContext="YES" id="Wkw-ME-beN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="1aS-o3-CZS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34P-ua-ZVU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="e9X-LA-eTB" kind="relationship" relationship="rootViewController" id="M9R-gp-JiS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DCj-AX-NJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="675" y="186"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="5Ht-hk-aGx">
@@ -347,12 +489,32 @@
                                                     <rect key="frame" x="20" y="44" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="somethingChanged:" destination="bv9-RT-2xU" eventType="editingChanged" id="bh7-BQ-EvV"/>
                                                         <outlet property="delegate" destination="bv9-RT-2xU" id="KTT-Z2-kyr"/>
                                                     </connections>
                                                 </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="u5T-rT-mEc">
+                                        <rect key="frame" x="0.0" y="391" width="320" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u5T-rT-mEc" id="Xsw-VG-Sub">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWh-ie-znA">
+                                                    <rect key="frame" x="105" y="22" width="111" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Start new logfile">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="startNewLogfilePressed:" destination="bv9-RT-2xU" eventType="touchUpInside" id="NYw-4O-fdB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -388,7 +550,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="CZ4-MO-1fc" kind="relationship" relationship="viewControllers" id="SUk-Ux-ee1"/>
-                        <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="M8t-EP-wfW"/>
+                        <segue destination="Wkw-ME-beN" kind="relationship" relationship="viewControllers" id="7ex-36-qda"/>
                         <segue destination="bv9-RT-2xU" kind="relationship" relationship="viewControllers" id="ZAG-DB-aWE"/>
                     </connections>
                 </tabBarController>
@@ -399,7 +561,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

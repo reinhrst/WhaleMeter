@@ -54,6 +54,10 @@ NSString* preparedLine;
                                                        selector: @selector(updateTimeoutView)
                                                        userInfo: nil
                                                         repeats: YES];
+    lightLine = @",,,";
+    locationLine = @",,,,,,,";
+
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -323,12 +327,9 @@ NSString* preparedLine;
 
 -(NSString*)buildLogLine
 {
-    if (!lightLine || !locationLine) {
-        return @"Logging before we have data,";
-    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [NSString stringWithFormat:@"%@s,%@,%@,",
+    return [NSString stringWithFormat:@"%@,%@,%@,",
             [formatter stringFromDate:[NSDate date]],
             lightLine,
             locationLine
@@ -336,7 +337,13 @@ NSString* preparedLine;
 }
 
 -(void)writeLogLine:(NSString*)line withComment:(NSString*)comment{
-    [[WMFileManager sharedInstance] writeLine:[line stringByAppendingString:comment]];
+    NSString* header =
+    @"date,lux,visible,ir,uv,"
+    "WGS84_lat,WGS84_lon,WGS84_alt,"
+    "OSGB36_northing,OSGB36_easting,OSGB36_altitude,"
+    "accuracy_horizontal,accuracy_vertical,comments";
+
+    [[WMFileManager sharedInstance] writeLine:[line stringByAppendingString:comment] withHeader:header];
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 

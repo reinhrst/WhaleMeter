@@ -7,9 +7,10 @@
 //
 
 #import "WMSettingsViewController.h"
+#import "WMFileManager.h"
 #import <Foundation/NSUserDefaults.h>
 
-@interface WMSettingsViewController () <UITextFieldDelegate>
+@interface WMSettingsViewController ()
 
 @end
 
@@ -53,6 +54,10 @@ NSUserDefaults* settings;
                  forKey:@"Default Email"];
     [settings setObject:self.defaultComment.text
                  forKey:@"Default Comment"];
+}
+-(IBAction)startNewLogfilePressed:(id)sender
+{
+    [[WMFileManager sharedInstance] startNewLogfile];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
