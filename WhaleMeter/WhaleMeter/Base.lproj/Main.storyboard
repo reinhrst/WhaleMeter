@@ -183,7 +183,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Measure" image="first" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" title="measure" image="measure" id="u1e-5L-l1D"/>
                     <connections>
                         <outlet property="IRLabel" destination="CIN-x1-GCU" id="gaR-ZR-Xja"/>
                         <outlet property="UVLabel" destination="ag8-0z-py2" id="tBr-wP-O9j"/>
@@ -357,7 +357,7 @@
         <scene sceneID="8Fz-C1-woC">
             <objects>
                 <navigationController title="Log files" definesPresentationContext="YES" id="Wkw-ME-beN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1aS-o3-CZS"/>
+                    <tabBarItem key="tabBarItem" title="logs" image="logs" id="1aS-o3-CZS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="34P-ua-ZVU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -369,7 +369,7 @@
             </objects>
             <point key="canvasLocation" x="675" y="186"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings View Controller - settings-->
         <scene sceneID="5Ht-hk-aGx">
             <objects>
                 <tableViewController id="bv9-RT-2xU" customClass="WMSettingsViewController" sceneMemberID="viewController">
@@ -530,7 +530,7 @@
                             <outlet property="delegate" destination="bv9-RT-2xU" id="dW2-V5-ia7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" id="y1M-HF-6g4"/>
+                    <tabBarItem key="tabBarItem" title="settings" image="settings" id="y1M-HF-6g4"/>
                     <connections>
                         <outlet property="coordinateSystemControl" destination="Iqg-aE-Q1o" id="s3a-cp-t8l"/>
                         <outlet property="defaultComment" destination="Bry-7R-Fd1" id="Q7p-Ra-046"/>
@@ -564,7 +564,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="logs" width="25" height="25"/>
+        <image name="measure" width="25" height="25"/>
+        <image name="settings" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
