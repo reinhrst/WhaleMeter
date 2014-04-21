@@ -8,13 +8,12 @@
  
   This example code is in the public domain.
  */
- 
-// Pin 3 has an green LED connected on the RGB LED shield
-// give it a name:
-int UV_EN = 3;
-int UV_VAL = 2;
-int L_SCL = 6;
-int L_SDA = 5;
+int LED = 1; 
+int BATT = 6;
+int UV_EN = 5;
+int UV_VAL = 4;
+int L_SCL = 2;
+int L_SDA = 3;
 int TSL2561_ADDRESS = 0b0111001;
 int TSL2561_CMD = 0x80;
 int TSL_2561_BLOCK = 0x10;
@@ -31,19 +30,23 @@ word batt;
 
 // the setup routine runs once when you press reset:
 void setup() {
-  Serial.begin(9600);
-  delay(1000);
   writeUv(0);
-  writeBatt(100);
+  writeBatt(0);
   writeIr(0);
   writeVis(0);
   advertisementData[9] = 0;
 
+  pinMode(UV_VAL, INPUT);
+  pinMode(BATT, INPUT);
+
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW); // led off
   pinMode(UV_EN, OUTPUT);
   digitalWrite(UV_EN, HIGH); // enable the UV meter
   Serial.println("start");
   setup_TSL2561();
   Serial.println("setup done");
+  RFduinoBLE.advertisementInterval = 160;
   
   RFduinoBLE.deviceName="Whale";
 }
@@ -54,7 +57,7 @@ void setup_TSL2561(){
   Wire.beginOnPins(L_SCL, L_SDA);
   Wire.beginTransmission(TSL2561_ADDRESS);
   if (!(writeByte(TSL_REG_CONTROL, 0b11) && // powerup
-        writeByte(TSL_REG_TIMING, 0b10) && // 402ms integration time. no gain
+        writeByte(TSL_REG_TIMING, 0b10 /* 402ms interval */ | 0x10 /* 16x gain */) &&
         writeByte(TSL_REG_INTERRUPT, 0))) { // no interrupts
         Serial.println("error in setup");
         Serial.println(getError());
@@ -64,24 +67,22 @@ void setup_TSL2561(){
 // the loop routine runs over and over again forever:
 void loop() {
   word uv,vis, ir;
-  uv = analogRead(2);
-  writeUv(uv);
+  uv = analogRead(UV_VAL);
+  batt = analogRead(BATT);
   readData(vis, ir);
-  Serial.println(uv);
-  Serial.println(batt);
-  Serial.println(vis);
-  Serial.println(ir);
-  
+  writeUv(uv);
+  writeBatt(batt);
   writeVis(vis);
   writeIr(ir);
-  batt++;
-  writeBatt(batt);
+
   RFduinoBLE.advertisementData = advertisementData;
   RFduinoBLE.begin();
-  Serial.println("hi");
-  
-  delay(1000);
+  RFduino_ULPDelay(990);
   RFduinoBLE.end();
+
+  digitalWrite(LED, HIGH);
+  RFduino_ULPDelay(10);
+  digitalWrite(LED, LOW);
 }
 
 void writeUv(word val) {
