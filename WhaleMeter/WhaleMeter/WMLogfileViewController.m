@@ -10,7 +10,9 @@
 #import "WMFileManager.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-#define COMMENT_FIELD_INDEX 13
+#define SOUND_FIELD_INDEX 13
+#define MANUAL_LIGHT_FIELD_INDEX 14
+#define COMMENT_FIELD_INDEX 15
 
 @interface WMLogfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
@@ -71,8 +73,10 @@ UIActionSheet* deleteFileActionSheet;
         NSArray* parts = [line componentsSeparatedByString:@","];
         NSString* time = [parts[0] componentsSeparatedByString:@" "][1];
         double_t lux = [parts[1] doubleValue];
-        NSString* comments = [[parts subarrayWithRange:NSMakeRange(COMMENT_FIELD_INDEX, [parts count]-COMMENT_FIELD_INDEX)] componentsJoinedByString:@","];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %.3g lx %@", time, lux, comments];
+        NSString* sound = parts[SOUND_FIELD_INDEX];
+        NSString* manualLight = parts[MANUAL_LIGHT_FIELD_INDEX];
+        NSString* comments = parts[COMMENT_FIELD_INDEX];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %.3g lx %@ %@ %@", time, lux, sound, manualLight, comments];
     }
     @catch (NSException * e) {
         NSLog(@"Exception: %@", e);
@@ -135,9 +139,13 @@ UIActionSheet* deleteFileActionSheet;
                 self.commentBox.hidden = NO;
                 NSString* line = [lines lastObject][indexInArray];
                 NSArray* parts = [line componentsSeparatedByString:@","];
-                NSString* comments = [[parts subarrayWithRange:NSMakeRange(COMMENT_FIELD_INDEX, [parts count]-COMMENT_FIELD_INDEX)] componentsJoinedByString:@","];
+                NSString* sound = parts[SOUND_FIELD_INDEX];
+                NSString* manualLight = parts[MANUAL_LIGHT_FIELD_INDEX];
+                NSString* comments = parts[COMMENT_FIELD_INDEX];
+                self.soundField.text = sound;
+                self.manualLightField.text = manualLight;
                 self.commentField.text = comments;
-                [self.commentField becomeFirstResponder];
+                [self.soundField becomeFirstResponder];
                 break;
             }
             case 3: /*cancel*/
@@ -158,6 +166,8 @@ UIActionSheet* deleteFileActionSheet;
 {
     self.modalMaker.hidden = YES;
     self.commentBox.hidden = YES;
+    [self.soundField resignFirstResponder];
+    [self.manualLightField resignFirstResponder];
     [self.commentField resignFirstResponder];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
 }
@@ -167,8 +177,12 @@ UIActionSheet* deleteFileActionSheet;
     NSInteger indexInArray = self.tableView.indexPathForSelectedRow.row + 1; //ignore header
     NSString* line = [lines lastObject][indexInArray]; //ignore header
     NSArray* parts = [line componentsSeparatedByString:@","];
-    NSArray* partsNoComment = [parts subarrayWithRange:NSMakeRange(0, COMMENT_FIELD_INDEX)];
-    NSArray* newparts = [partsNoComment arrayByAddingObject:self.commentField.text];
+    NSArray* partsWeKeep = [parts subarrayWithRange:NSMakeRange(0, SOUND_FIELD_INDEX)];
+    NSArray* toAdd = @[
+                    [self.soundField.text stringByReplacingOccurrencesOfString:@"," withString:@"."],
+                    [self.manualLightField.text stringByReplacingOccurrencesOfString:@"," withString:@"."],
+                    [self.commentField.text stringByReplacingOccurrencesOfString:@"," withString:@"."]];
+    NSArray* newparts = [partsWeKeep arrayByAddingObjectsFromArray: toAdd];
     NSString* newline = [newparts componentsJoinedByString:@","];
 
     NSMutableArray* newlines = [[lines lastObject] mutableCopy];

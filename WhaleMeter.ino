@@ -10,7 +10,7 @@
  */
 int LED = 1; 
 int BATT = 6;
-int UV_EN = 5;
+int UV_ENABLED = 5;
 int UV_VAL = 4;
 int L_SCL = 2;
 int L_SDA = 3;
@@ -41,8 +41,8 @@ void setup() {
 
   pinMode(LED, OUTPUT);
   digitalWrite(LED, LOW); // led off
-  pinMode(UV_EN, OUTPUT);
-  digitalWrite(UV_EN, HIGH); // enable the UV meter
+  pinMode(UV_ENABLED, OUTPUT);
+  digitalWrite(UV_ENABLED, LOW);
   Serial.println("start");
   setup_TSL2561();
   Serial.println("setup done");
@@ -64,10 +64,21 @@ void setup_TSL2561(){
   }
 }
 
+int led_off = 0;
 // the loop routine runs over and over again forever:
 void loop() {
   word uv,vis, ir;
+  if (!(led_off % 5)) {
+    digitalWrite(LED, HIGH);
+  }
+  digitalWrite(UV_ENABLED, HIGH);
+  RFduino_ULPDelay(5);
+  if (!(led_off % 5)) {
+    digitalWrite(LED, LOW);
+  }
+  led_off++;
   uv = analogRead(UV_VAL);
+  digitalWrite(UV_ENABLED, LOW);
   batt = analogRead(BATT);
   readData(vis, ir);
   writeUv(uv);
@@ -77,12 +88,9 @@ void loop() {
 
   RFduinoBLE.advertisementData = advertisementData;
   RFduinoBLE.begin();
-  RFduino_ULPDelay(990);
+  RFduino_ULPDelay(995);
   RFduinoBLE.end();
 
-  digitalWrite(LED, HIGH);
-  RFduino_ULPDelay(10);
-  digitalWrite(LED, LOW);
 }
 
 void writeUv(word val) {

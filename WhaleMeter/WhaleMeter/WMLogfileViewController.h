@@ -14,5 +14,7 @@
 @property(strong, nonatomic) IBOutlet UIBarButtonItem* undoButton;
 @property(nonatomic, retain) IBOutlet UIView *modalMaker;
 @property(nonatomic, retain) IBOutlet UIView *commentBox;
+@property(nonatomic, retain) IBOutlet UITextField *soundField;
+@property(nonatomic, retain) IBOutlet UITextField *manualLightField;
 @property(nonatomic, retain) IBOutlet UITextField *commentField;
 @end

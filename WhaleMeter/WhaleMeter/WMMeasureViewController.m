@@ -39,7 +39,8 @@ NSString* preparedLine;
 
 #define BATT_TOP 400
 #define BATT_BOTTOM 330
-#define BATT_TIME 16
+#define BATT_TIME 48
+#define UV_ZERO 313; //313 is the lower limit (exp result, datasheet: between 1 and 1.05 V so with 3.3V feed, that's between 310 and 325
 
 #pragma mark view
 
@@ -232,7 +233,7 @@ NSString* preparedLine;
     NSData* data = [advertisementData valueForKey:@"kCBAdvDataManufacturerData"]; //keep reference
     const uint8_t* bytes = [data bytes] + 2;
     
-    uint16_t uv = [self decodeBytes:bytes atPos: 0];
+    uint16_t uv = [self decodeBytes:bytes atPos: 0]-UV_ZERO;
     uint16_t vis = [self decodeBytes:bytes atPos: 2];
     uint16_t ir = [self decodeBytes:bytes atPos: 4];
     uint16_t batt = [self decodeBytes:bytes atPos: 6];
@@ -322,28 +323,35 @@ NSString* preparedLine;
 -(IBAction)logMeasurements:(id)sender
 {
     NSString* line = [self buildLogLine];
-    [self writeLogLine:line withComment:[settings stringForKey:@"Default Comment"]];
+    [self writeLogLine:line withSound: @"" andManualLight:@"" andComment:[settings stringForKey:@"Default Comment"]];
 }
 
 -(NSString*)buildLogLine
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [NSString stringWithFormat:@"%@,%@,%@,",
+    return [NSString stringWithFormat:@"%@,%@,%@",
             [formatter stringFromDate:[NSDate date]],
             lightLine,
             locationLine
             ];
 }
 
--(void)writeLogLine:(NSString*)line withComment:(NSString*)comment{
+-(void)writeLogLine:(NSString*)line withSound:(NSString*) sound andManualLight:(NSString*) light andComment:(NSString*)comment{
     NSString* header =
     @"date,lux,visible,ir,uv,"
     "WGS84_lat,WGS84_lon,WGS84_alt,"
     "OSGB36_northing,OSGB36_easting,OSGB36_altitude,"
-    "accuracy_horizontal,accuracy_vertical,comments";
+    "accuracy_horizontal,accuracy_vertical,sound,manuallight,comments";
+    
+    NSString* newline = [NSString stringWithFormat:@"%@,%@,%@,%@",
+                         preparedLine,
+                         [sound stringByReplacingOccurrencesOfString:@"," withString:@"."],
+                         [light stringByReplacingOccurrencesOfString:@"," withString:@"."],
+                         [comment stringByReplacingOccurrencesOfString:@"," withString:@"."]
+                         ];
 
-    [[WMFileManager sharedInstance] writeLine:[line stringByAppendingString:comment] withHeader:header];
+    [[WMFileManager sharedInstance] writeLine:newline withHeader:header];
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
@@ -353,12 +361,12 @@ NSString* preparedLine;
     self.commentBox.hidden = NO;
     self.commentField.text=[settings stringForKey:@"Default Comment"];
     preparedLine = [self buildLogLine];
-    [self.commentField becomeFirstResponder];
+    [self.soundField becomeFirstResponder];
 }
 
 -(IBAction)submitCommentBox:(id)sender
 {
-    [self writeLogLine:preparedLine withComment:self.commentField.text];
+    [self writeLogLine:preparedLine withSound: self.soundField.text andManualLight: self.manualLightField.text andComment:self.commentField.text];
     [self cancelCommentBox:sender];
 }
 
@@ -366,6 +374,8 @@ NSString* preparedLine;
 {
     self.modalMaker.hidden = YES;
     self.commentBox.hidden = YES;
+    [self.soundField resignFirstResponder];
+    [self.manualLightField resignFirstResponder];
     [self.commentField resignFirstResponder];
 }
 
